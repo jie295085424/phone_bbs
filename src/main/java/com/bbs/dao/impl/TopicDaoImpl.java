@@ -17,8 +17,7 @@ public class TopicDaoImpl implements TopicDao {
 	private SessionFactory sessionFactory;
 	@SuppressWarnings({ "unchecked", "deprecation" })
 	@Override
-	public List<Topic> findByPid(int pid) {
-		
+	public List<Topic> findByPid(int pid) {		
 		return (List<Topic>)sessionFactory.getCurrentSession().createCriteria(Topic.class)
 				.createAlias("phone", "phone").add(Restrictions.eq("phone.pid", pid)).list();
 	}
@@ -55,6 +54,27 @@ public class TopicDaoImpl implements TopicDao {
 	public void update(Topic topic) {
 		// TODO Auto-generated method stub
 		sessionFactory.getCurrentSession().update(topic);
+	}
+	@SuppressWarnings({ "unchecked", "deprecation" })
+	@Override
+	public List<Topic> findByTitle(String context) {
+		System.out.println(context);
+		return sessionFactory.getCurrentSession().createCriteria(Topic.class).add(Restrictions.like("title", "%"+context+"%")).list();
+		
+	}
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<Topic> findJingPinTopic() {
+		// TODO Auto-generated method stub
+		return sessionFactory.getCurrentSession().createQuery("from Topic where isBoutique=true").list();
+	}
+	@SuppressWarnings({ "unchecked", "deprecation" })
+	@Override
+	public List<Topic> findHotTopic() {
+		// TODO Auto-generated method stub
+		
+		return sessionFactory.getCurrentSession().createQuery("from Topic where countNum>4 order by countNum desc")
+				.setFirstResult(0).setMaxResults(19).list();
 	}
 
 }

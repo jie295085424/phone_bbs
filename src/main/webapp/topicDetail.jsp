@@ -36,45 +36,67 @@ function checkNewComment() {
 		<jsp:include page="top.jsp"></jsp:include>
 	</div>
 	
-	<input type="button" value="回复" id="huifu" onclick="checkNewComment()">
-	
-	<div class="panel panel-default" style="width: 75%;margin: 0 auto;margin-top: 20px">
-  <!-- Default panel contents -->
-  <div class="panel-heading" style="background: #71AAE3"><p>标题：&nbsp;&nbsp;&nbsp;${topic.title }</p></div>
-  <div class="panel-body" style="padding: 0 15px;margin: 0 -15px;">
-	<div style="float: left;width: 20%;height:250px;background:#EFF4FB;">
-	   <b>${topic.user.username }</b>
-	</div>
-	<div style="float: right;width: 80%;height:30px;background:#EFF4FB">
-		<b style="float: left;">发表于：${topic.time }</b>
-	</div>
-	<div class="content" style="float: right;width: 80%;height:220px;ackground:#EFF4FB;">
-		<b style="float: left;">${topic.content }</b>
-	</div>
+	<div class="panel panel-default" style="margin: 0 auto;width: 70%"> 
+   <input type="button" value="回复" id="huifu" onclick="checkNewComment()" style="position:absolute;margin-left: 65%;margin-top: 10px;">
+  <div class="panel-heading">   
+    <p class="panel-title" style="margin-left: 12%;">${topic.title }</p>
+  </div> 
+  <div class="panel-body" style="overflow: hidden;position: relative;">
+    <div class="row">
+    	<div class="col-md-2">  	
+    	<div class="thumbnail" style="margin:0px;overflow: hidden;width:100px; height:100px;margin:20px;"> 
+    	<img  src="${topic.user.img }" style="width:90px; height:90px;">  	
+    	</div>   	 
+    	<b style="margin-left: 45px;">${topic.user.username }</b>
+    	</div> 
+    	  	
+    	<div class="col-md-8">      
+    	${topic.content }           
+    	</div> 	
+    	 <b style="position:absolute;display: inline-block;height: 22px;vertical-align: bottom;bottom: 5px;right:5px;">发表于：${topic.time }</b>   
+    </div>
   </div>
+ 
 </div>
+
+ 
 	<c:forEach var="comment" items="${list }">
-	<div class="panel panel-default" style="width: 75%;margin: 0 auto;margin-top: 3px">
-  
-  <div class="panel-body" style="padding: 0 15px;margin: 0 -15px;">
-
-    	<div style="float: left;width: 20%;height:250px;background:#EFF4FB;">
-	   <b>${comment.user.username }</b>
-	</div>
-	<div style="float: right;width: 80%;height:30px;background:#EFF4FB">
-		<b style="float: left;">${comment.time }</b>
-	</div>
-	<div class="content" style="float: right;width: 80%;height:220px;ackground:#EFF4FB;">
-		<b style="float: left;">${comment.content }</b>
-	</div>
-	</div>
+	
+	<div class="panel panel-default" style="margin: 0 auto;width: 70%"> 
+  <div class="panel-body" style="overflow: hidden;position: relative;">
+  	
+    	<div class="col-md-2">  	
+    	<div class="thumbnail" style="margin:0px;overflow: hidden;width:100px; height:100px;margin:20px;"> 
+    	<img  src="${comment.user.img }" style="width:90px; height:90px;">  	
+    	</div>   	 
+    	<b style="margin-left: 45px;">${comment.user.username }</b>
+    	</div> 
+    	  	
+    	<div class="col-md-8">
+    	${comment.content }         	
+    	</div>
+    	   <b style="position:absolute;display: inline-block;height: 22px;vertical-align: bottom;bottom: 5px;right:5px;">发表于：${comment.time }</b> 
+    </div>
   </div>
-
-		</c:forEach>			
+ 
 </div>
-	<div Id="newComment">
-	<jsp:include page="newComment.jsp"></jsp:include>
+
+		</c:forEach>
+
+
+ <!-- 	
+	<div>
+	${comments }
+	</div>	
+ -->		
+			
+	<div Id="newComment" style="margin: 0 auto;">	
+		<jsp:include page="newComment.jsp"></jsp:include>
 	</div>
+<div>  
+	<jsp:include page="bottom.jsp"></jsp:include>
+</div>
 
 </body>
+
 </html>

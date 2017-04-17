@@ -18,8 +18,7 @@ public class CommentDaoImpl implements CommentDao {
 	@SuppressWarnings({ "unchecked", "deprecation" })
 	@Override
 	public List<Comment> findByTid(int tid) {
-		// TODO Auto-generated method stub
-		
+		// TODO Auto-generated method stub		
 		return (List<Comment>) sessionFactory.getCurrentSession().createCriteria(Comment.class)
 				.createAlias("topic", "topic").add(Restrictions.eq("topic.id", tid)).list();
 	}
@@ -33,14 +32,12 @@ public class CommentDaoImpl implements CommentDao {
 	public List<Comment> findByUid(int uid) {
 		// TODO Auto-generated method stub
 		return (List<Comment>) sessionFactory.getCurrentSession().createCriteria(Comment.class)
-				.createAlias("user", "user").add(Restrictions.eq("user.uid", uid)).list();
-				
+				.createAlias("user", "user").add(Restrictions.eq("user.uid", uid)).list();				
 	}
 	@Override
 	public void delComment(Comment comm) {
 		// TODO Auto-generated method stub
 		sessionFactory.getCurrentSession().delete(comm);
 	}
-
 }
 

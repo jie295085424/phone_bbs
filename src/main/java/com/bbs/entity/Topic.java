@@ -42,8 +42,18 @@ public class Topic {
 	
 	@Column(name="bootique",nullable=false,columnDefinition="boolean default false")
 	private boolean isBoutique;
+	@Column(name="countNum")
+	private int countNum;
+	
 
 
+
+	public int getCountNum() {
+		return countNum;
+	}
+	public void setCountNum(int countNum) {
+		this.countNum = countNum;
+	}
 	public boolean isBoutique() {
 		return isBoutique;
 	}

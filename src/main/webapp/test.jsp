@@ -1,28 +1,39 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
+<%@ page language="java" contentType="text/html; charset=utf-8"
+	pageEncoding="utf-8"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<html>
 <head>
-<title>jquery ui弹出div层对话框--柯乐义</title>
-<link rel="stylesheet" href="http://keleyi.com/keleyi/pmedia/jquery/ui/1.10.3/css/smoothness/jquery-ui.min.css" /> 
-<script type="text/javascript" src="http://keleyi.com/keleyi/pmedia/jquery-1.9.1.min.js"></script>
-<script src="http://keleyi.com/keleyi/pmedia/jquery/ui/1.10.3/js/jquery-ui-1.10.3.min.js" type="text/javascript"></script> 
-<script type="text/javascript">
-function keleyidialog() {
-$("#dialog").dialog();
-}
-</script>
-<style type="text/css">#dialog{display:none;}</style>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<link rel="stylesheet" href="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/css/bootstrap.min.css">
+	<script src="http://cdn.static.runoob.com/libs/jquery/2.1.1/jquery.min.js"></script>
+	<script src="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<title>导航栏</title>
+
 </head>
 <body>
+<div class="panel panel-default">
+  <div class="panel-heading" style="overflow: hidden;">   
+    <h3 class="panel-title" style="margin-left: 12%;">${topic.title }</h3>
+    <input type="button" value="回复" id="huifu" onclick="checkNewComment()" style="float: right;margin-right: 5%;">
+  </div> 
+  <div class="panel-body" style="overflow: hidden;">
+    <div class="row">
+    	<div class="col-md-4" align="center">  	
+    	<a href="#">  
+    	<div class="thumbnail" style="margin:0px;overflow: hidden;width:100px; height:100px"> 
+    	<img  src="${topic.user.img }" style="width:90px; height:90px;">
+    	</div>   	 
+    	</a>
+    	<b>${topic.user.username }</b>
+    	</div>
+    	  	
+    	<div class="col-md-8">
+    	${topic.content }
+    	</div>
+    </div>
+  </div>
+</div>
 
-<div style="width:338px;height:100px;margin:10px auto;"><input type="button" onclick="keleyidialog()" value="点击我" />
-<a href="http://keleyi.com/a/bjac/5939d3b2c920ff6d.htm" target="_blank">原文</a> <a href="http://keleyi.com/keleyi/phtml/jui/dialog/1.htm">无动画</a> <a href="http://keleyi.com/keleyi/phtml/jui/dialog/2.htm">动画</a>
-<a href="http://keleyi.com/keleyi/phtml/jui/dialog/3.htm">redmond</a>
-<a href="http://keleyi.com/keleyi/phtml/jui/dialog/4.htm">sunny</a>
-<br />点击按钮弹出对话框
-</div>
-<div id="dialog" title="div层对话框">
-<p>This is the default dialog which is useful for displaying information. The dialog window can be moved, resized and closed with the 'x' icon.</p>
-<p>柯乐义：这是一个弹出div层对话框，可用于显示信息。可以拖动和关闭这个弹出层，还可以改变它的大小。 </p>
-</div>
 </body>
 </html>

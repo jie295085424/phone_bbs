@@ -19,23 +19,23 @@
 <script type="text/javascript" src="lang/zh-cn/zh-cn.js"></script>
 </head>
 <body>
-
+	<div  style="width: 70%;margin: 0 auto">
 	<form action="${pageContext.request.contextPath }/newComment.do?tid=<%=request.getParameter("tid") %>
 	&username=<%=session.getAttribute("username")%>" method="post">
-		<div align="center">
+		<div>
 
-			<div style="padding-top: 10px;">
-				<b>内容：</b>
-
-				<script type="text/plain" id="editor" style="height: 300px;" name="content">
-</script>
-			</div>
-			<input type="submit" value="发帖" name="sumit">
+			<div style="margin: 0px;margin-top: 5px;">  
+				<script type="text/plain" id="editor" style="width:100%;height: 300px;" name="content">
+					</script>  
+			</div style="margin: 0px;margin-top: 10px;"	>
+			<div>
+			<input type="submit" value="发帖" name="sumit"></div>
 		</div>
 		<script type="text/javascript">
 			var ue = UM.getEditor('editor');
 		</script>
 
 	</form>
+	</div>
 </body>
 </html

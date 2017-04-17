@@ -6,6 +6,11 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.shiro.SecurityUtils;
+import org.apache.shiro.authc.UsernamePasswordToken;
+import org.apache.shiro.session.Session;
+import org.apache.shiro.subject.Subject;
+import org.apache.shiro.web.util.WebUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
@@ -13,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.bbs.entity.Comment;
 import com.bbs.entity.User;
@@ -20,6 +26,7 @@ import com.bbs.service.CommentService;
 import com.bbs.service.TopicService;
 import com.bbs.service.UserService;
 import com.bbs.utils.UploadImgUtils;
+import com.mysql.jdbc.Security;
 
 @Controller
 @RequestMapping
@@ -28,11 +35,17 @@ public class UserController {
 	private UserService userService;
 	@RequestMapping(value="/login",method=RequestMethod.GET)
 	public String login(HttpServletRequest request,User u){
-		if(userService.contain(u)){
-			request.getSession().setAttribute("username", u.getUsername());
-			return "index";
+
+		Subject subject = SecurityUtils.getSubject();
+		try{			
+			subject.login(new UsernamePasswordToken(u.getUsername(),u.getPassword()));						
+		}catch (Exception e) {
+			 return "error";
 		}
-		return "error";		
+		User user = userService.findByName(u.getUsername());
+        subject.getSession().setAttribute("user", user);
+        request.getSession().setAttribute("user", user);
+        return "start";
 	}
 	
 	@RequestMapping(value="/regist",method=RequestMethod.GET)
@@ -45,13 +58,14 @@ public class UserController {
 	@RequestMapping(value="/logout",method=RequestMethod.GET)
 	public String logout(HttpServletRequest request){
 		request.getSession().removeAttribute("username");
+		SecurityUtils.getSubject().getSession().removeAttribute("user");
 		return "index";	
 	}
 	@RequestMapping(value="/showUser",method=RequestMethod.GET)
 	public String userDetail(HttpServletRequest request){
-		String username = (String) request.getSession().getAttribute("username");
-		 User u = userService.findByName(username);
-		 request.setAttribute("user", u);
+		User u = (User) request.getSession().getAttribute("user");
+		 User u2 = userService.findByName(u.getUsername());
+		 request.setAttribute("user", u2);
 		return "user/updUser";		
 	}
 	@RequestMapping(value="/showAllUser",method=RequestMethod.GET)

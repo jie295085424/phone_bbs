@@ -10,6 +10,7 @@ E:\Java\mycode\web\phone_bbs\src\main\java\com\bbs\entity\PSystem.java
 E:\Java\mycode\web\phone_bbs\src\main\java\com\bbs\dao\PhoneDao.java
 E:\Java\mycode\web\phone_bbs\src\main\java\com\bbs\entity\Phone.java
 E:\Java\mycode\web\phone_bbs\src\main\java\com\bbs\dao\impl\PhoneDaoImpl.java
+E:\Java\mycode\web\phone_bbs\src\main\java\com\bbs\entity\Role.java
 E:\Java\mycode\web\phone_bbs\src\main\java\com\bbs\dao\CommentDao.java
 E:\Java\mycode\web\phone_bbs\src\main\java\com\bbs\service\impl\CommentServiceImpl.java
 E:\Java\mycode\web\phone_bbs\src\main\java\com\bbs\dao\CPUDao.java
@@ -29,12 +30,14 @@ E:\Java\mycode\web\phone_bbs\src\main\java\com\bbs\dao\BrandDao.java
 E:\Java\mycode\web\phone_bbs\src\main\java\com\bbs\controller\GuideController.java
 E:\Java\mycode\web\phone_bbs\src\main\java\com\bbs\entity\Topic.java
 E:\Java\mycode\web\phone_bbs\src\main\java\com\bbs\service\TopicService.java
+E:\Java\mycode\web\phone_bbs\src\main\java\com\bbs\utils\RetryLimitHashedCredentialsMatcher.java
 E:\Java\mycode\web\phone_bbs\src\main\java\com\bbs\entity\Color.java
 E:\Java\mycode\web\phone_bbs\src\main\java\com\bbs\entity\NetSupport.java
 E:\Java\mycode\web\phone_bbs\src\main\java\com\bbs\controller\UserController.java
 E:\Java\mycode\web\phone_bbs\src\main\java\com\bbs\service\impl\TopicServiceImpl.java
 E:\Java\mycode\web\phone_bbs\src\main\java\com\bbs\controller\PhoneController.java
 E:\Java\mycode\web\phone_bbs\src\main\java\com\bbs\dao\UserDao.java
+E:\Java\mycode\web\phone_bbs\src\main\java\com\bbs\utils\MyRealm.java
 E:\Java\mycode\web\phone_bbs\src\main\java\com\bbs\dao\TopicDao.java
 E:\Java\mycode\web\phone_bbs\src\main\java\com\bbs\dao\impl\CommentDaoImpl.java
 E:\Java\mycode\web\phone_bbs\src\main\java\com\bbs\service\impl\PhoneServiceImpl.java

@@ -1,5 +1,6 @@
 package com.bbs.entity;
 
+import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.Column;
@@ -8,11 +9,13 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
-import org.hibernate.annotations.Cascade;
-import org.hibernate.annotations.CascadeType;
 
 @Entity
 @Table(name="t_user")
@@ -31,6 +34,18 @@ public class User {
 	private Set<Topic> topics;
 	@OneToMany(fetch=FetchType.LAZY,mappedBy="user",orphanRemoval=true)
 	private Set<Comment> comments;
+	@ManyToMany(fetch=FetchType.EAGER)
+	@JoinTable(name="user_role",
+	joinColumns={@JoinColumn(name="uid",referencedColumnName="uid")},
+	inverseJoinColumns={@JoinColumn(name="rid",referencedColumnName="rid")})
+	private Set<Role> roles;
+	
+	public Set<Role> getRoles() {
+		return roles;
+	}
+	public void setRoles(Set<Role> roles) {
+		this.roles = roles;
+	}
 	public int getUid() {
 		return uid;
 	}
@@ -67,5 +82,16 @@ public class User {
 	public void setComments(Set<Comment> comments) {
 		this.comments = comments;
 	}
+	
+	@Transient
+	public Set<String>  getRolesName(){
+		Set<Role> roles = this.getRoles();
+		Set<String> set = new HashSet<String>();
+		for(Role r:roles){
+			set.add(r.getRname());
+		}
+		return set;
+	}
+	
 
 }

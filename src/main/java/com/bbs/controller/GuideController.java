@@ -67,6 +67,7 @@ public class GuideController {
 		JSONArray json = new JSONArray();
 		for(Phone p : list){
 			JSONObject jo = new JSONObject();
+			jo.put("pid", p.getPid());
 			jo.put("brand", p.getBrand().getBname());
 			jo.put("model", p.getModel());
 			jo.put("img", p.getImg());			

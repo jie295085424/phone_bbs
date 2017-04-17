@@ -74,6 +74,13 @@ public class PhoneDaoImpl implements PhoneDao {
 		
 		sessionFactory.getCurrentSession().merge(phone);
 	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<Phone> findHot() {
+		// TODO Auto-generated method stub
+		return sessionFactory.getCurrentSession().createQuery("from Phone order by countTopic desc").setFirstResult(0).setMaxResults(8).list();
+	}
 }
 
 

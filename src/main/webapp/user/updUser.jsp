@@ -5,9 +5,18 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<link rel="stylesheet" href="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/css/bootstrap.min.css">
+	<script src="http://cdn.static.runoob.com/libs/jquery/2.1.1/jquery.min.js"></script>
+	<script src="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <title>Insert title here</title>
 </head>
-
+<script type="text/javascript">
+$(window.parent.document).find("#iframeId").load(function () {
+    var main = $(window.parent.document).find("#iframeId");
+    var thisheight = $(document).height() + 20;
+    main.height(thisheight);
+});
+</script>
 <body>
 <div>
 <form action="${pageContext.request.contextPath }/updUser.do?uid=${user.uid}" method="post" enctype="multipart/form-data">

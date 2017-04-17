@@ -33,11 +33,14 @@ public class CommentServiceImpl implements CommentService {
 		// TODO Auto-generated method stub
 		Topic topic = topicDao.findById(tid);
 		User u = userDao.findByName(username);
+		topic.setCountNum(topic.getCountNum()+1);
+		topicDao.save(topic);
 		Date time = new Date();
 		comment.setTime(time);
 		comment.setTopic(topic);
 		comment.setUser(u);
 		commentDao.save(comment);
+		
 	}
 	@Override
 	public List<Comment> findByUid(int uid) {
@@ -48,6 +51,9 @@ public class CommentServiceImpl implements CommentService {
 	public void delComment(int cid) {
 		// TODO Auto-generated method stub
 		Comment comm = new Comment();
+		Topic topic = topicDao.findById(comm.getTopic().getId());
+		topic.setCountNum(topic.getCountNum()-1);
+		topicDao.update(topic);
 		comm.setId(cid);
 		commentDao.delComment(comm);
 	}

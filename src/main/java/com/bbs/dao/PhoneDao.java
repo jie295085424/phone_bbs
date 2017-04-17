@@ -15,4 +15,5 @@ public interface PhoneDao {
 	public void add(Phone phone);
 	public List<Phone> findByModel(String model);
 	public void update(Phone phone);
+	public List<Phone> findHot();
 }

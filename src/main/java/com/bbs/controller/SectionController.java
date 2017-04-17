@@ -1,5 +1,6 @@
 package com.bbs.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -22,6 +23,16 @@ public class SectionController {
 	private GuideService phoneService;
 	@RequestMapping(value="/sectionBrand",method=RequestMethod.GET)
 	public String sectionBrand(HttpServletRequest request){
+		int bid = Integer.valueOf(request.getParameter("bid"));
+		Brand brand = brandDao.findById(bid);
+		List<Brand> list = new ArrayList<>();
+		list.add(brand);
+		request.setAttribute("list", list);
+		return "section";	
+	}
+	
+	@RequestMapping(value="/sectionBrands",method=RequestMethod.GET)
+	public String sectionBrands(HttpServletRequest request){
 		List<Brand> list = brandDao.findAll();
 		request.setAttribute("list", list);
 		return "section";	

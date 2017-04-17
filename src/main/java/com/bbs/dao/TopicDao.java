@@ -21,4 +21,10 @@ public interface TopicDao {
 
 	void update(Topic topic);
 
+	List<Topic> findByTitle(String context);
+
+	List<Topic> findJingPinTopic();
+
+	List<Topic> findHotTopic();
+
 }

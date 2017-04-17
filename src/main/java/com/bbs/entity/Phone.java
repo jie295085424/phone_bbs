@@ -68,6 +68,16 @@ public class Phone {
 	private int pos_camera;
 	@OneToMany(fetch=FetchType.LAZY,mappedBy="phone",orphanRemoval=true)
 	private Set<Topic> topics;
+	@Column(name="countTopic")
+	private int countTopic;
+	
+	
+	public int getCountTopic() {
+		return countTopic;
+	}
+	public void setCountTopic(int countTopic) {
+		this.countTopic = countTopic;
+	}
 	public int getPid() {
 		return pid;
 	}

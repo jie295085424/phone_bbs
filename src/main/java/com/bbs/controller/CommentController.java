@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.bbs.dao.UserDao;
 import com.bbs.entity.Comment;
+import com.bbs.entity.User;
 import com.bbs.service.CommentService;
 import com.bbs.service.TopicService;
 import com.bbs.service.UserService;
@@ -26,10 +27,9 @@ public class CommentController {
 	private TopicService topicService;
 	
 	@RequestMapping(value="/newComment",method=RequestMethod.POST)
-	public String newTopic(HttpServletRequest requser,Comment comment){
-		int tid = Integer.valueOf(requser.getParameter("tid"));
-		String username = requser.getParameter("username");
-		
+	public String newTopic(HttpServletRequest request,Comment comment){
+		int tid = Integer.valueOf(request.getParameter("tid"));
+		String username = ((User)request.getSession().getAttribute("user")).getUsername();		
 		commentService.save(username,tid,comment);
 		return "success";
 			
@@ -37,10 +37,9 @@ public class CommentController {
 	
 	@RequestMapping(value="/showMyComment",method=RequestMethod.GET)
 	public String showMyComment(HttpServletRequest request){
-		int uid = userService.findByName((String)request.getSession().getAttribute("username")).getUid();
+		int uid = userService.findByName(((User)request.getSession().getAttribute("user")).getUsername()).getUid();
 		List<Comment> comments = commentService.findByUid(uid);
 		request.setAttribute("comments", comments);
-		System.out.println(comments);
 		return "user/delComment";
 		
 	}
@@ -48,8 +47,8 @@ public class CommentController {
 	public String delMyComment(HttpServletRequest request){
 		int cid = Integer.valueOf(request.getParameter("cid"));
 		commentService.delComment(cid);
-		return "user/delComment";
-		
+		return "user/delComment";		
 	}
+
 
 }

@@ -5,44 +5,40 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<link rel="stylesheet" href="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/css/bootstrap.min.css">
+	<script src="http://cdn.static.runoob.com/libs/jquery/2.1.1/jquery.min.js"></script>
+	<script src="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <title>Insert title here</title>
-<link rel="stylesheet" href="css/bootstrap.css" type="text/css" />
-</head>
 <style type="text/css">
-a:link,a:visited {
-	background-color: white;
-	text-decoration: none;
-} /* 未被访问的链接 */ /*已被访问的链接 */
-a:hover {
-	background-color: white;
-	text-decoration: none;
-} /* 鼠标指针移动到链接上 */
-.typeStyle{
-	color: #0066C2;
-}
-.typeStyle:hover {
-	background-image: url("image/type_bg.png");
-	color: red;
-}
-</style>
-<body>
-<div style="background-color: #FAFAFA;font-family: 微软雅黑;">
-	<c:forEach var="phone" items="${list }">
-		<a target="_top"
-			href="${pageContext.request.contextPath }/phoneTopic.do?pid=${phone.pid}" />
-			<div class="typeStyle"
-				style="margin: 10px 10px 10px 17px;background-color: white;height: 100px;width: 160px;float: left;border: 1px solid #D8E6F0">
-				<div style="width: 160px;height: 100px;float: left;">
-				<img  style="width: 160px;height: 100px;"src="${phone.img }">
-				</div>
-				<div style="width: 130px;height: 35px;float: left;">
-					<div
-						style="width: 100%;height: 35px;line-height:35px;float: left;font-size: 14px;font-weight: bolder;text-align: center;">
-						${phone.model }
-					</div>
 
-				</div>
-			</div> </a>
+body{margin:0; padding:0;}
+
+
+</style>
+</head>
+<script type="text/javascript">
+	function getPhoneDetail(pid) {
+		parent.location.href="${pageContext.request.contextPath }/phoneTopic.do?pid="+pid;
+	}
+	$(window.parent.document).find("#iframeId").load(function () {
+	    var main = $(window.parent.document).find("#iframeId");
+	    var thisheight = $(document).height() + 20;
+	    main.height(thisheight);
+	});
+</script>
+<body>
+<div class="row">
+	<c:forEach var="phone" items="${list }">
+ <a href="javascript:void(0)" onclick="getPhoneDetail(${phone.pid})">
+  <div class="col-lg-3 col-sm-3 col-md-3" style="height: auto">
+    <div class="thumbnail">
+      <img src="${phone.img }" width="200px" height="200px">
+      <div class="caption" align="center">
+        <p>型号：${phone.model }</p>
+      </div>
+    </div>
+  </div>
+  </a>
 	</c:forEach>
 </div>
 </body>

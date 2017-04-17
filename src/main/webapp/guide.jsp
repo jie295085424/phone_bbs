@@ -10,7 +10,7 @@
 </head>
 <style type="text/css">
 .guide {
-	width: 80%;
+	width: 70%;
 	margin: 0 auto;
 	margin-top: 20px;
 }
@@ -26,23 +26,22 @@
 	padding-top: 30px;
 }
 
-body{
-	margin: 0;
-	padding: 0;
-}
-
 select {
 	width: 150px;
 	margin-left: 20px
 }
+table{
 
+	margin-top: 30px;
+	margin-bottom: 30px;
+}
 table tr {
 	height: 30px;
 	text-align: right;
 }
 
 table tr td {
-	padding-left: 40px;
+	padding-left: 55px;
 }
 </style>
 <script type="text/javascript">
@@ -75,20 +74,20 @@ $(document).ready(function () {
 			
 			},
 			function (data,status) {
-				$(".phone_list").html("");
+				$("#phone_list").html("");
 				var objs = JSON.parse(data);
 				$.each(objs,function(i,phone){
 					
-					$(".phone_list").append(
-							"<div class='phoneModel'><img src='"+phone.img+"' width='200px',height='200px' /><br>品牌："+phone.brand+"<br>型号："+phone.model+"   "	
-							+"<br>售价："+phone.price+"</div>"	);
+					$("#phone_list").append(
+							"<a href='phoneTopic.do?pid="+
+						    phone.pid+" '><div class='col-lg-3 col-md-3'><div class='thumbnail'><img src='"+phone.img+"'><div class='caption'><h4>"
+						         +phone.brand+"</h4><p>型号："+phone.model+"</p><p>价格："+phone.price+"</p></div></div></div></a>"			
+					);
 									
 				});
 			}
 		);});
 	});
-
-
 
 </script>
 <body>
@@ -98,9 +97,9 @@ $(document).ready(function () {
 	</div>
 
 	<div class="guide">
+	<div class="panel panel-default" style="margin:0px;overflow: hidden;height: auto;">
 			<table>
 				<tr>
-
 					<td>品牌:<select class="brand">
 							<option value="0"></option>
 							<c:forEach var="brand" items="${brands }">
@@ -185,10 +184,14 @@ $(document).ready(function () {
 							</c:forEach>
 					</select>
 					</td>
-
 				</tr>
 			</table>
-			<div class="phone_list" ></div>
+			</div>
+			<div class="row" id="phone_list" style="margin-top:20px;"></div>
 	</div>
+	<div>
+	<jsp:include page="bottom.jsp"></jsp:include>
+</div>
+	
 </body>
 </html>

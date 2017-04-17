@@ -10,20 +10,23 @@
 	<div>
 		<jsp:include page="../top.jsp"></jsp:include>
 	</div>
-	<div style="width: 80%">
-		<div style="float: left; width: 30%">
+	<div class="row" style="width: 70%;margin: 0 auto;">
+		<div class="col-lg-4">
 			<ul>
 				<li><a href="${pageContext.request.contextPath }/showUser.do" target="show">信息修改</a></li>
 				<li><a href="${pageContext.request.contextPath }/showMyTopic.do" target="show">我的帖子</a></li>
 				<li><a href="${pageContext.request.contextPath }/showMyComment.do" target="show">我的评论</a></li>
 			</ul>
 		</div>
-		<iframe name="show" style="float: right; width: 70%">
-			<div>
-				
-		</iframe>
-	</div>
+		<div class="col-lg-8">
+		<iframe name="show" id="iframeId" scrolling="no"  frameborder="0" width="100%">
+		</iframe>	
+		</div>
+</div>
 
+<div> 
+	<jsp:include page="../bottom.jsp"></jsp:include>
+</div>
 
 </body>
 </html>

@@ -26,6 +26,15 @@ public class Brand {
 	private String bname;
 	@OneToMany(mappedBy="brand",fetch=FetchType.LAZY,orphanRemoval=true)
 	private Set<Phone> phones;
+	@Column(name="countTopic")
+	private int countTopic;
+	
+	public int getCountTopic() {
+		return countTopic;
+	}
+	public void setCountTopic(int countTopic) {
+		this.countTopic = countTopic;
+	}
 	public int getBid() {
 		return bid;
 	}
@@ -48,5 +57,6 @@ public class Brand {
 	public String toString() {
 		return "Brand [bname=" + bname + "]";
 	}
+
 	
 }

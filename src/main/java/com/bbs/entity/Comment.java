@@ -31,6 +31,15 @@ public class Comment {
 	@ManyToOne(fetch=FetchType.EAGER)
 	@JoinColumn(name="tid")
 	private Topic topic;
+	@Column(name="parentId")
+	private int parentId;
+
+	public int getParentId() {
+		return parentId;
+	}
+	public void setParentId(int parentId) {
+		this.parentId = parentId;
+	}
 	public int getId() {
 		return id;
 	}

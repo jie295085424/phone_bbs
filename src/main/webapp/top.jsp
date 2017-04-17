@@ -5,125 +5,138 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<title>phone_bbs_top</title>
+	<link rel="stylesheet" href="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/css/bootstrap.min.css">
+	<script src="http://cdn.static.runoob.com/libs/jquery/2.1.1/jquery.min.js"></script>
+	<script src="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<title>导航栏</title>
 <style type="text/css">
 
 .top{
-	width:90%;
-	height:20px;
-	text-align: right;
-
-	}
-.nav {
-	width: 80%;
-	height: 40px;
-	background: #6699CC;
-}
-
-.nav ul {
-	margin: 0;
-	padding: 0;
-	list-style: none;
-	list-style-type: none;
-	font-family:微软雅黑;
-}
-
-.nav ul li {
-	position: relative;
-	width: 110px;
-	float: left;
-	text-align: center;
-	font-weight: bold;
+	background-color: #3D4751;
+	height: 35px;
 	font-size: 16px;
-	font-weight: bold
+	line-height: 35px;
+	
+}
+.top div{
+	float: right;
+	margin-right: 16%;
+	height: 35px;
+}
+.top a{
+	padding-left:1%;
+	padding-right:1%;
+	color: #FFFFFF;
+	text-decoration:none ; 
+}
+.top a:hover
+{
+	background-color: #5A7474;
+}
+.vavbar{
+	margin-bottom: 1%;
+}
+.navbar navbar-default{
+	float: right;
+}
+.container-fluid{
+
+	padding-top: 2%;
+	margin-left:0px;
+	margin-right: 10%;
+}
+.navbar-brand{
+	font-size: 20px;	
 }
 
-.nav ul li a { /* border-right: 1px solid #e9e9e9; */
-	color: white;
-	height: 40px;
-	line-height: 40px;
-	text-decoration: none;
-	display: block;
-	text-align: center;
-	overflow: hidden;
-	text-decoration: none;
+nav div{
+	float:right;
+	font-size: 18px;
 }
-
-.nav ul li a:hover {
-	font-weight: bold;
-	background: #71AAE3;
+nav div input{
+	margin-top: 1%;
 }
-
-.nav ul li ul {
-	display: none;
-
+.navbar-header{
+	
+	height: 80px;	
 }
-
-.nav ul li:hover ul {
-	display: block;
-	position: absolute;
-	min-width: 190px;
-	left: 0;
-}
-
-.nav ul li:hover ul li a {
-	display: block;
-	background: #6699CC;
-	color: white;
-	width: 110px;
-	text-align: center;
-	border-right: none;
-
-}
-
-.nav ul li:hover ul li a:hover {
-	background: #71AAE3;
-	color: white;
+.dropdown-menu{
 	font-size: 16px;
 }
+
+.form-control{
+	width: 15%;
+	display: inline;	
+}
+
 </style>
+<script type="text/javascript">
+function checkSearch() {
+	var content = $("#searchContent").val();
+	if(null!=content&&""!=content){
+		location.href="${pageContext.request.contextPath }/searchTopic.do?content="+content;
+	}else{
+		alert("请输入搜索内容!");
+	}
+}
+</script>
 </head>
-
 <body>
 
-	<div class="top">
-
+<div class="top">
+	<a style="float: left;margin-left: 14%" href="${pageContext.request.contextPath }/indexAction.do">手机论坛首页</a>
 	<c:choose>
-	<c:when test="${username==null }">
-		<a href="${pageContext.request.contextPath }/login.jsp">登陆</a>
-		<a href="${pageContext.request.contextPath }/regist.jsp">注册</a>
+	<c:when test="${user.username==null }">
+		<a style="float: right;margin-right: 14%" href="${pageContext.request.contextPath }/regist.jsp">注册</a>
+		<a style="float: right;margin-right: 1%" href="${pageContext.request.contextPath }/login.jsp">登陆</a>
 	</c:when>
 	<c:otherwise>
-	<b>${username },欢迎您！</b>
-		<a href="${pageContext.request.contextPath }/user/userDetail.jsp">个人中心</a>
-		<a href="${pageContext.request.contextPath }/logout.do">注销</a>
+		<a style="float: right;margin-right: 14%" href="${pageContext.request.contextPath }/logout.do">注销</a>
+		<a style="float: right;margin-right: 1%" href="${pageContext.request.contextPath }/user/userDetail.jsp">个人中心</a>
+	<b style="color: white;float: right;margin-right: 1%">${user.username },欢迎您！</b>
 	</c:otherwise>
 	</c:choose>
+</div>
+
+<nav class="navbar navbar-default" role="navigation">
+	
+ 	<div style="float: left;margin-left: 14%;margin-top: 15px;height: 70px;margin-right: 1%;">
+ 	
+ 		<img  style="width: 50px;height: 70px;" src="${pageContext.request.contextPath }/img/logo.ico" >
+ 		<div style="margin-left: 5px;">
+ 			<b style="font-size: 25px;">手机导购论坛</b><br>
+ 			<b>phone_bbs</b>
+ 		</div>
+ 	</div>
+ 	
+	<div class="container-fluid">
+
+	<div class="navbar-header">
+		<a class="navbar-brand" href="${pageContext.request.contextPath }/indexAction.do">首页</a>
 	</div>
-	<div align="center">
-		<img width="80%" height="165px" src="img/topLogo.jpg">
+	<div>
+		<ul class="nav navbar-nav">
+					<li class="dropdown">
+				<a href="#" class="dropdown-toggle" data-toggle="dropdown">
+					帖子
+					<b class="caret"></b>
+				</a>
+				<ul class="dropdown-menu">
+					<li><a href="${pageContext.request.contextPath }/jingPinTopic.do">精品帖子</a></li>
+					<li class="divider"></li>
+					<li><a href="${pageContext.request.contextPath }/hotTopic.do">热门帖子</a></li>
+				</ul>
+			</li>
+			<li><a href="${pageContext.request.contextPath }/sectionBrands.do">板块</a></li>
+			<li><a href="${pageContext.request.contextPath }/guide.do">导购</a></li>
+		</ul>
+
+       <input type="text" name="content" class="form-control" placeholder="请输入字段名" id="searchContent" style="width: 30%"/ >  
+         <button class="btn btn-info btn-search" onclick="checkSearch();">search</button>  
+
 	</div>
-	<center>
-		<div class="nav">
-			<ul>
-				<li><a href="index.jsp">首页</a></li>
-				<li><a href="">帖子</a>
-					<ul>
-						<li><a href="" target="_top">热门帖子</a></li>
-						<li><a href="" target="_top">精品帖子</a></li>
-					</ul></li>
-				<li><a href="${pageContext.request.contextPath }/sectionBrand.do">版块</a></li>
-				<li><a href="${pageContext.request.contextPath }/guide.do" >导购</a></li>
-			</ul>
-<div class="search" align="right" style="padding-top: 10px;padding-right: 10px">
-	<form action="topic_Search.action" method="post"
-		onsubmit="return checkContent();">
-		<input type="text" name="content" id="searchContent"
-			style="width:180px;height:22px;font-size:12px;background-color: white;border: 0;padding-left: 6px;" />
-		<input type="submit" value="Search"
-			style="background-color: white;font-size:12px;height:22px;border: 0;color: #6699CC;font-weight: bolder;" />
-	</form>
-		</div>
-	</center>
+	</div>
+</nav>
+
 </body>
 </html>

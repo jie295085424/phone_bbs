@@ -8,15 +8,31 @@
 <link rel="stylesheet" href="css/bootstrap.css" type="text/css" />
 <title>Insert title here</title>
 <style type="text/css">
+body{margin:0; padding:0;}
 
 </style>
 </head>
+<script type="text/javascript">
 
+
+</script>
 <body>
 	<div>
 		<jsp:include page="top.jsp"></jsp:include>
 	</div>
 	<c:forEach var="brand" items="${list}">
+	
+	<div class="panel panel-default" style="margin:0 auto;width:70%;overflow: hidden;height: auto;margin-bottom: 10px;">
+  <div class="panel-heading">
+    <h3 class="panel-title">${brand.bname }</h3>
+  </div>
+  <div class="panel-body">
+    <iframe	src="${pageContext.request.contextPath }/sectionPhone.do?bid=${brand.bid }"   id="iframeId" scrolling="no"  frameborder="0" width="100%"></iframe>
+  </div>
+</div>
+	
+
+	<!-- 
 	<div class="panel panel-info" style="margin:0 auto; width: 80%;height:40px;margin-top: 20px;background: #6699CC">
 	<a style="font-size: 18px;color: white;">&nbsp;&nbsp;&nbsp;${brand.bname }</a>
 	</div>	
@@ -24,10 +40,12 @@
 		<iframe	src="${pageContext.request.contextPath }/sectionPhone.do?bid=${brand.bid }"
 						marginwidth="0" marginheight="0px" frameborder="0"
 						scrolling="no" width="100%"></iframe>
-						</div>
-					</div>
-
-	
+						</div>	
+						 -->
 </c:forEach>
+
+<div>
+	<jsp:include page="bottom.jsp"></jsp:include>
+</div>
 </body>
 </html>
