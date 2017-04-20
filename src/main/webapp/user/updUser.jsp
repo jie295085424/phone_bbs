@@ -61,13 +61,15 @@ body{
 								aria-describedby="sizing-addon2" name="email"
 								value="${user.email }">
 						</div>
-						<div class="input-group">
-							<span class="input-group-addon" id="sizing-addon2">性别:</span>
+						<div class="input-group" style="height: 34px;">
+							<span class="input-group-addon" id="sizing-addon2" style="height: 34px">性别:</span>
+							 <div class="panel panel-default" style="width:196px;height: 36px;margin: 0px;line-height:36px;border-bottom-left-radius:0;">
+							 
 							<c:choose>
 								<c:when test="${user.sex=='boy'}">
  	&nbsp;&nbsp;&nbsp;男：<input type="radio" name="sex" value="boy"
-										checked="checked">
- 	&nbsp;&nbsp;&nbsp;女：<input type="radio" name="sex" value="girl">
+										checked="checked" width="80px">
+ 	&nbsp;&nbsp;&nbsp;女：<input type="radio" name="sex" value="girl" width="80px">
 								</c:when>
 								<c:otherwise>
  	&nbsp;&nbsp;&nbsp;	男：<input type="radio" name="sex" value="boy">
@@ -75,6 +77,9 @@ body{
 										checked="checked">
 								</c:otherwise>
 							</c:choose>
+							 
+   								 </div>
+							
 						</div>
 						<div class="input-group">
 							<span class="input-group-addon" id="sizing-addon2">注册时间:</span> 

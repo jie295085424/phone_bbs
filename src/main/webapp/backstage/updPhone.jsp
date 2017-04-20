@@ -1,23 +1,41 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
-    pageEncoding="utf-8"%>
+	pageEncoding="utf-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<link href="css/bootstrap.min.css" rel="stylesheet" />
-<script type="text/javascript" src="js/jquery-3.1.1.min.js"></script>
-<script type="text/javascript" src="js/bootstrap.min.js"></script>
+<link rel="stylesheet"
+	href="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/css/bootstrap.min.css">
+<script
+	src="http://cdn.static.runoob.com/libs/jquery/2.1.1/jquery.min.js"></script>
+<script
+	src="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
 <title>Insert title here</title>
+
+<style type="text/css">
+table tr td {
+	width: 340px;
+	text-align: center;
+}
+
+.input-group {
+	width: 300px;
+	margin: 0 auto;
+	margin-top: 10px;
+}
+
+.input-group-addon {
+	width: 110px;
+}
+</style>
 </head>
 <script type="text/javascript">
 	$(document).ready(
 			function () {
-				
-						
 				var sid = ${phone.psystem.sid};
 				var nid = ${phone.netSupport.nid};	
-				
 				 $(".sid").find("option[value='"+sid+"']").attr("selected",true);
 				 $(".nid").find("option[value='"+nid+"']").attr("selected",true);
 				 <c:forEach var="color" items="${phone.colors }">
@@ -28,95 +46,167 @@
 </script>
 <body>
 
-<div>
+	<div class="panel panel-default" style="width: 60%; margin: 30px 80px;">
+		<div class="panel-heading" align="center">
+			<h3 class="panel-title" >手机详情</h3>
+		</div>
+
 		<form
 			action="${pageContext.request.contextPath }/addPhone.do?bid=${phone.brand.bid}"
 			method="post" enctype="multipart/form-data">
 			<table>
-	
+				<tr>
+					<td >
+						<div class="input-group" style="margin-top: 30px">
+							<span class="input-group-addon">手机型号：</span> <input type="text"
+								class="form-control" name="model" value="${phone.model }">
+						</div>
+					</td>
+					<td>
+						<div class="input-group" style="margin-top: 30px">
+							<span class="input-group-addon">网络支持：</span> 
+							<select class="sid" name="sid" style="width: 190px; height: 36px">
+								<option>请选择</option>
+								<option value="1">android</option>
+								<option value="2">ios</option>
+								<option value="3">云os</option>
+								<option value="4">ubantu</option>
+							</select>
+						</div>
+					</td>
+				</tr>
+
+				<tr>
+					<td>
+						<div class="input-group">
+							<span class="input-group-addon">价格：</span> <input type="text"
+								class="form-control" name="model" value="${phone.model }">
+						</div>
+					</td>
+					<td>
+						<div class="input-group">
+							<span class="input-group-addon">三围：</span> <input type="text"
+								class="form-control" name="lwh" value="${phone.lwh }">
+						</div>
+					</td>
+				</tr>
+
+
+				<tr>
+					<td>
+						<div class="input-group">
+							<span class="input-group-addon">重量：</span> <input type="text"
+								class="form-control" name="weight" value="${phone.weight }">
+						</div>
+					</td>
+					<td>
+						<div class="input-group">
+							<span class="input-group-addon">RAM:</span> <input type="text"
+								class="form-control" name="ram" value="${phone.ram }">
+						</div>
+					</td>
+				</tr>
+
+				<tr>
+					<td>
+						<div class="input-group">
+							<span class="input-group-addon">ROM:</span> <input type="text"
+								class="form-control" name="rom" value="${phone.rom }">
+						</div>
+					</td>
+					<td>
+						<div class="input-group">
+							<span class="input-group-addon">电池容量：</span> <input type="text"
+								class="form-control" name="battery" value="${phone.battery }">
+						</div>
+					</td>
+				</tr>
+
+				<tr>
+					<td>
+						<div class="input-group">
+							<span class="input-group-addon">前置摄像头：</span> <input type="text"
+								class="form-control" name="pre_camera"
+								value="${phone.pre_camera }">
+						</div>
+					</td>
+					<td>
+						<div class="input-group">
+							<span class="input-group-addon">后置摄像头：</span> <input type="text"
+								class="form-control" name="pre_camera"
+								value="${phone.pre_camera }">
+						</div>
+					</td>
+				</tr>
+
+				<tr>
+					<td>
+						<div class="input-group">
+							<span class="input-group-addon">cpu：</span> <input type="text"
+								class="form-control" name="cmodel" value="${phone.cpu.cmodel }">
+						</div>
+					</td>
+					<td>
+						<div class="input-group">
+							<span class="input-group-addon">性能：</span> <input type="text"
+								class="form-control" name="cperformance"
+								value="${phone.cpu.cperformance }">
+						</div>
+					</td>
+				</tr>
+
+				<tr>
+					<td>
+						<div class="input-group">
+							<span class="input-group-addon">网络支持：</span> <select class="nid"
+								name="nid" style="width: 190px; height: 36px">
+								<option>请选择</option>
+								<option value="1">双网通</option>
+								<option value="2">全网通</option>
+							</select>
+						</div>
+					</td>
+					<td>
+						<div class="input-group">
+							<span class="input-group-addon">图片：</span> <input type="text"
+								class="form-control" id="f_file" class="imgPassth"
+								onclick="fu.click()" value="${phone.img }"> <input
+								type="file" name="image" id="fu"
+								onchange="f_file.value=this.value" style="display: none"
+								value="${phone.img }">
+						</div>
+					</td>
+				</tr>
+
+				<tr>
+					<td colspan="2">
+						<div class="input-group"
+							style="width: 650px; float: left; margin-left: 20px;">
+							<span class="input-group-addon"
+								style="height: 34px; width: 110px;">颜色：</span>				
+							<div class="panel panel-default"
+								style="width: 530px; height: 36px; margin: 0px; line-height: 36px; border-bottom-left-radius: 0;">
+								<input type="checkbox" name="color" value="1">银色&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+								<input type="checkbox" name="color" value="2">白色&nbsp;&nbsp;&nbsp;&nbsp;
+								&nbsp;&nbsp; <input type="checkbox" name="color" value="3">黑色&nbsp;&nbsp;&nbsp;&nbsp;
+								&nbsp;&nbsp; <input type="checkbox" name="color" value="4">土豪金&nbsp;&nbsp;&nbsp;&nbsp;
+								&nbsp;&nbsp; <input type="checkbox" name="color" value="5">玫瑰金
+							</div>
+						</div>
+					</td>
+				</tr>
 			
 				<tr>
-					<td>手机型号：</td>
-					<td><input type="text" name="model" value="${phone.model }"/></td>
-					<td>系统：  </td>  
-					<td><select class="sid" name="sid">
-							<option>请选择</option>
-							<option value="1">android</option>
-							<option value="2">IOS</option>
-							<option value="3">云os</option>
-							<option value="4">ubantu</option>
-
-					</select></td>
-
+					<td colspan="2">
+					<input type="submit" style="margin:10px 40px;float:right;color: #333;border-radius: 4px; padding: 6px 12px;border: 1px solid transparent;border-color: #ccc;" value="save">
+					<input type="reset" style="margin:10px 40px;margin-right:40px;float:right;color: #333;border-radius: 4px; padding: 6px 12px;border: 1px solid transparent;border-color: #ccc;" value="reset"></td>
 				</tr>
-				<tr>
-					<td>价格：</td>
-					<td><input type="text" name="price" value="${phone.price }"/></td>
-					<td>三围：</td>
-					<td><input type="text" name="lwh" value="${phone.lwh }"/></td>
-				</tr>
-				<tr>
-					<td>重量：</td>
-					<td><input type="text" name="weight" value="${phone.weight }"/></td>
-					<td>RAM:</td>
-					<td><input type="text" name="ram" value="${phone.ram }"/></td>
-				</tr>
-				<tr>
-					<td>ROM:</td>
-					<td><input type="text" name="rom" value="${phone.rom }"/></td>
-					<td>电池容量：</td>
-					<td><input type="text" name="battery" value="${phone.battery }"/></td>
-				</tr>
-				<tr>
-					<td>前置摄像头：</td>
-					<td><input type="text" name="pre_camera" value="${phone.pre_camera }"/></td>
-					<td>后置摄像头：</td>
-					<td><input type="text" name="pos_camera" value="${phone.pos_camera }"/></td>
-				</tr>
-				<tr>
-
-					<td>cpu：</td>
-					<td><input type="text" name="cmodel" value="${phone.cpu.cmodel }"/></td>
-					
-					<td>性能：</td>
-					<td><input type="text" name="cperformance" value="${phone.cpu.cperformance }"/></td>
-
-				</tr>
-				<tr>
-				<td>网络支持：</td>
-					<td><select class="nid" name="nid">
-							<option>请选择</option>
-							<option value="1">双网通</option>
-							<option value="2">全网通</option>
-					</select></td>
-					<td>图片：</td>
-					<td><input type="text" id="f_file" class="imgPassth"
-						onclick="fu.click()"  value="${phone.img }"></td>
-					<td><input type="file" name="image" id="fu"
-						onchange="f_file.value=this.value" style="display: none"  value="${phone.img }">
-					</td>
-
-
-				</tr>
-				<tr>
-					<td>颜色：</td>
-					<td colspan="3" style="text-align: left;"><input
-						type="checkbox" name="color" value="1">银色 <input
-						type="checkbox" name="color" value="2">白色 <input
-						type="checkbox" name="color" value="3">黑色 <input
-						type="checkbox" name="color" value="4">土豪金 <input
-						type="checkbox" name="color" value="5">玫瑰金</td>
-				</tr>
-				<tr>
-					<td></td>
-					<td><input type="submit" value="save"></td>
-					<td><input type="reset" value="reset"></td>
-					<td></td>
-				</tr>
-
 			</table>
 		</form>
+
+
 	</div>
+
 
 </body>
 </html>

@@ -396,7 +396,7 @@ $(function(){
 	var menu = [{"id":"1","name":"主菜单","parentId":"0","url":"","icon":"","order":"1","isHeader":"1","childMenus":[
 					{"id":"3","name":"用户管理","parentId":"1","url":"http://localhost:8080/phone_bbs/backstage/showUser2.jsp","icon":"&#xe604;","order":"1","isHeader":"0","childMenus":[
 					]},
-					{"id":"4","name":"手机管理","parentId":"1","url":"http://localhost:8080/phone_bbs/getBrand.do","icon":"&#xe602;","order":"1","isHeader":"0","childMenus":[
+					{"id":"4","name":"版块管理","parentId":"1","url":"http://localhost:8080/phone_bbs/getBrand.do","icon":"&#xe602;","order":"1","isHeader":"0","childMenus":[
 					]},
 					{"id":"5","name":"帖子管理","parentId":"1","url":"http://localhost:8080/phone_bbs/backstage/showTopic2.jsp","icon":"&#xe602;","order":"1","isHeader":"0","childMenus":[
 						]}

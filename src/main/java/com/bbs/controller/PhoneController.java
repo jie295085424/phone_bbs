@@ -75,8 +75,7 @@ public class PhoneController {
 	public void addPhone(@RequestParam("image")MultipartFile file,HttpServletRequest request,Phone phone) throws IOException{
 		int bid = Integer.valueOf(request.getParameter("bid"));
 		Brand brand = new Brand();brand.setBid(bid);
-		phone.setBrand(brand);
-		
+		phone.setBrand(brand);		
 		String cmodel = request.getParameter("cmodel");
 		String cperformance = request.getParameter("cperformance");
 		List<CPU> cpus = cpuDao.findByModel(cmodel);
