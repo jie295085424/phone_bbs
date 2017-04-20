@@ -109,7 +109,9 @@ public class PhoneController {
 		phone.setColors(colors);
 		
 		String filePath = UploadImgUtils.uploadFile(file, request);
+		if(""!=filePath&&null!=filePath){
 		phone.setImg(filePath);
+		}
 		System.out.println(phone.toString());
 		List<Phone> phones = phoneService.findByModel(phone.getModel());
 		if(phones.size()>0){	

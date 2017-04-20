@@ -1,5 +1,7 @@
 package com.bbs.entity;
 
+
+import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -30,6 +32,12 @@ public class User {
 	private String password;
 	@Column(name="img")
 	private String img;
+	@Column(name="e_mail")
+	private String email;
+	@Column(name="sex")
+	private String sex;
+	@Column(name="regTime")
+	private Date regTime;
 	@OneToMany(fetch=FetchType.LAZY,mappedBy="user",orphanRemoval=true)
 	private Set<Topic> topics;
 	@OneToMany(fetch=FetchType.LAZY,mappedBy="user",orphanRemoval=true)
@@ -40,6 +48,26 @@ public class User {
 	inverseJoinColumns={@JoinColumn(name="rid",referencedColumnName="rid")})
 	private Set<Role> roles;
 	
+	
+	
+	public String getSex() {
+		return sex;
+	}
+	public void setSex(String sex) {
+		this.sex = sex;
+	}
+	public Date getRegTime() {
+		return regTime;
+	}
+	public void setRegTime(Date regTime) {
+		this.regTime = regTime;
+	}
+	public String getEmail() {
+		return email;
+	}
+	public void setEmail(String email) {
+		this.email = email;
+	}
 	public Set<Role> getRoles() {
 		return roles;
 	}
@@ -92,6 +120,4 @@ public class User {
 		}
 		return set;
 	}
-	
-
 }

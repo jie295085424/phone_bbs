@@ -32,7 +32,7 @@ div.bottom{
 
 <div  class="bottom" align="center">
 	<a href="#">关于论坛</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a  href="#">技术支持</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a href="#">隐私政策</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a href="#">联系我们</a>&nbsp;&nbsp;|&nbsp;&nbsp;
-	<a href="${pageContext.request.contextPath }/backstage/backstage.jsp">后台管理</a>
+	<a href="${pageContext.request.contextPath }/backstage/backstage1.jsp">后台管理</a>
 	<hr width="60%" align="center">
 	 <font face="微软雅黑" size="2px">JJ007 |
 		广东省广州市天河区广东技术师范学院<br /> 电话：18819470251

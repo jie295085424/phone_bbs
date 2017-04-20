@@ -23,9 +23,6 @@ public class CommentController {
 	private CommentService commentService;
 	@Autowired
 	private UserService userService;
-	@Autowired
-	private TopicService topicService;
-	
 	@RequestMapping(value="/newComment",method=RequestMethod.POST)
 	public String newTopic(HttpServletRequest request,Comment comment){
 		int tid = Integer.valueOf(request.getParameter("tid"));

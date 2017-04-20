@@ -1,15 +1,21 @@
 package com.bbs.controller;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import org.apache.jasper.tagplugins.jstl.core.Out;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.alibaba.fastjson.JSONArray;
+import com.alibaba.fastjson.JSONObject;
 import com.bbs.dao.TopicDao;
 import com.bbs.entity.Comment;
 import com.bbs.entity.CommentTree;
@@ -82,20 +88,45 @@ public class TopicController {
 		topicService.delTopic(tid);
 		return "user/delTopic";
 	}
-	@RequestMapping(value="/delTopic",method=RequestMethod.GET)
-	public void delTopic(HttpServletRequest request){
+	@RequestMapping(value="/delTopic",method=RequestMethod.POST)
+	public void delTopic(HttpServletRequest request,HttpServletResponse response) throws IOException{
 		int tid = Integer.valueOf(request.getParameter("tid"));
 		topicService.delTopic(tid);
+		response.setContentType("text/html;charset=UTF-8");
+		response.getWriter().write("success");
 	}
-	
+
 	@RequestMapping(value="/showTopics",method=RequestMethod.GET)
-	public String showTopics(HttpServletRequest request){
+	public void showTopics(HttpServletRequest request,HttpServletResponse response) throws IOException{
 		List<Topic> topics = topicService.findAll();
 		request.setAttribute("topics", topics);
-		return "/backstage/showTopic";
+		JSONArray json = new JSONArray();
+		for(Topic topic:topics){
+			JSONObject jo = new JSONObject();
+			jo.put("id", topic.getId());
+			jo.put("title", topic.getTitle());
+			jo.put("countNum", topic.getCountNum());
+			jo.put("boutique", topic.isBoutique());
+			jo.put("time", topic.getTime().toString());
+			StringBuffer action = new StringBuffer();
+			if(topic.isBoutique()==false){
+				action.append("<a href='javascript:void(0)' onclick='updTopic("+topic.getId()+")'>加精&nbsp;&nbsp;</a>");
+			}else{
+				action.append("<a href='javascript:void(0)' onclick='updTopic("+topic.getId()+")'>取消加精&nbsp;&nbsp;</a>");
+			}
+			action.append("<a href='javascript:void(0)' onclick='topicDetail("+topic.getId()+")'>详情&nbsp;&nbsp;</a>"+
+					"<a href='javascript:void(0)' onclick='delTopic("+topic.getId()+")'>删除&nbsp;&nbsp;</a>");
+			jo.put("action", action.toString());
+			json.add(jo);
+		}
+		JSONObject jsonObject = new JSONObject();
+		jsonObject.put("data", json);
+		jsonObject.put("total", topics.size());
+		System.out.println(jsonObject.toJSONString());
+		response.setContentType("text/html;charset=UTF-8");
+		response.getWriter().write(jsonObject.toString());
 		
 	}
-	
 	
 	@RequestMapping(value="/updTopic",method=RequestMethod.POST)
 	public void updTopic(HttpServletRequest request,HttpServletResponse response,Topic topic){
